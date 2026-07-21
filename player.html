@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en-US" data-bs-theme="dark" id="htmlTag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Baddiex Videos</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://cdn.aceimg.com/KeMhTe9lo.png">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* SINKRONISASI VARIABEL TEMA KONSISTEN DENGAN INDEX */
+        [data-bs-theme="dark"] {
+            --body-bg: #060913;
+            --card-bg: #0f1626;
+            --text-main: #94a3b8;
+            --text-title: #f8fafc;
+            --navbar-bg: rgba(15, 22, 38, 0.85);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --search-bg: rgba(6, 9, 19, 0.6);
+            --footer-bg: #0b101d;
+        }
+
+        [data-bs-theme="light"] {
+            --body-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #64748b;
+            --text-title: #0f172a;
+            --navbar-bg: rgba(255, 255, 255, 0.85);
+            --border-color: rgba(15, 23, 42, 0.08);
+            --search-bg: rgba(241, 245, 249, 0.9);
+            --footer-bg: #f1f5f9;
+        }
+
+        :root {
+            --primary-color: #10b981;
+            --primary-glow: rgba(16, 185, 129, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--body-bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding-top: 90px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Poppins', sans-serif; }
+        a { text-decoration: none; }
+
+        /* HEADER & NAVBAR */
+        .navbar {
+            background-color: var(--navbar-bg) !important;
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 14px 0; z-index: 1100;
+        }
+        .navbar-brand { font-size: 24px; font-weight: 700; color: var(--text-title) !important; letter-spacing: -0.5px; }
+        .navbar-brand span { color: var(--primary-color); }
+        .navbar-toggler { border: none; padding: 6px; }
+        .navbar-toggler:focus { box-shadow: none; }
+
+        .search-box { position: relative; width: 100%; }
+        .search-input {
+            width: 100%; background-color: var(--search-bg); border: 1px solid var(--border-color);
+            padding: 9px 16px 9px 42px; border-radius: 10px; font-size: 14px; color: var(--text-title);
+            transition: all 0.25s ease;
+        }
+        .search-input:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 4px var(--primary-glow); }
+        .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); opacity: 0.5; color: var(--text-main); }
+
+        /* REVISI DROPDOWN MOBILE: GARIS PEMBATAS ANTAR TULISAN MENU */
+        @media (max-width: 991.98px) {
+    /* --- TAMBAHKAN CSS UNTUK EFEK MELAYANG INI --- */
+    .navbar {
+        top: 12px; /* Jarak dari atas layar biar lepas/melayang */
+        left: 12px;
+        right: 12px;
+        width: calc(100% - 24px) !important; /* Biar ada jarak kanan-kiri */
+        border-radius: 16px; /* Sudut melengkung biar berasa terisolasi */
+        border: 1px solid var(--border-color); /* Garis tepi tipis penegas efek kaca */
+        
+        /* Bayangan tegas yang bikin efeknya bener-bener kayak ngambang di atas konten */
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25); 
+        
+        padding: 10px 0;
+        transition: all 0.3s ease;
+    }
+
+    /* Sesuaikan dropdown menu mobile biar melengkungnya serasi dengan navbar luar */
+    .navbar-collapse { 
+        background-color: var(--card-bg); 
+        margin-top: 10px; 
+        padding: 14px; 
+        border-radius: 12px; 
+        border: 1px solid var(--border-color); 
+    }
+    
+    /* ... sisa kode di dalam media query 991.98px yang lama tetep biarin ... */
+    .navbar-nav .nav-item { border-bottom: 1px solid var(--border-color); }
+    .navbar-nav .nav-item:last-child { border-bottom: none; }
+    .navbar-nav .nav-link { padding: 12px 10px !important; }
+}
+            
+            .navbar-collapse { 
+                background-color: var(--card-bg); 
+                margin-top: 12px; 
+                padding: 14px; 
+                border-radius: 14px; 
+                border: 1px solid var(--border-color); 
+            }
+            .navbar-nav .nav-item {
+                border-bottom: 1px solid var(--border-color);
+            }
+            .navbar-nav .nav-item:last-child {
+                border-bottom: none; /* Menu terakhir tidak pakai garis */
+            }
+            .navbar-nav .nav-link {
+                padding: 12px 10px !important;
+            }
+        }
+
+        .navbar-nav .nav-link { color: var(--text-main); font-size: 14px; font-weight: 500; padding: 8px 18px !important; border-radius: 8px; transition: all 0.2s; }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: var(--primary-color) !important; background-color: rgba(16, 185, 129, 0.08); }
+
+        .theme-toggle-btn {
+            background: none; border: 1px solid var(--border-color); color: var(--text-title);
+            width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.2s; background-color: var(--card-bg);
+        }
+        .theme-toggle-btn:hover { border-color: var(--primary-color); color: var(--primary-color); box-shadow: 0 0 10px var(--primary-glow); }
+        .header-avatar { width: 38px; height: 38px; background: linear-gradient(135deg, var(--primary-color), #059669); color: #060913; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+
+        /* PLAYER WORKSPACE */
+        .player-workspace { max-width: 1200px; margin: 0 auto 40px auto; }
+        
+        .video-embed-box {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-top: 32px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .custom-video-player {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .video-embed-box video,
+        .custom-video-player video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+            object-position: center center;
+            background: #000;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .mobile-video-controls {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 18px 12px 10px;
+            background: linear-gradient(transparent, rgba(0,0,0,.9));
+            z-index: 5;
+        }
+
+        .video-control-btn {
+            width: 40px;
+            height: 40px;
+            flex: 0 0 40px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(0,0,0,.55);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .video-control-btn:active {
+            transform: scale(.92);
+        }
+
+        .video-progress-wrap {
+            flex: 1;
+            min-width: 0;
+        }
+
+        #videoProgress {
+            width: 100%;
+            height: 5px;
+            accent-color: #10b981;
+            cursor: pointer;
+        }
+
+        @media (max-width: 767.98px) {
+            .mobile-video-controls {
+                gap: 7px;
+                padding: 22px 10px 10px;
+            }
+
+            .video-control-btn {
+                width: 42px;
+                height: 42px;
+                flex-basis: 42px;
+                font-size: 15px;
+            }
+
+            #videoProgress {
+                height: 6px;
+            }
+        }
+
+        /* HTML5 controls: play/pause, timeline, volume, fullscreen */
+        .video-embed-box video::-webkit-media-controls-panel {
+            background-image: linear-gradient(transparent, rgba(0,0,0,.9));
+        }
+
+        .video-embed-box video::-webkit-media-controls-play-button,
+        .video-embed-box video::-webkit-media-controls-mute-button,
+        .video-embed-box video::-webkit-media-controls-fullscreen-button {
+            display: flex;
+        }
+
+        /* Easier controls for mobile touchscreens */
+
+
+        /* TOMBOL FULL HD VIDEO */
+        .full-hd-button {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 24px;
+            padding: 12px 28px;
+            background-color: #10b981;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.25s ease;
+        }
+
+        .full-hd-button:hover {
+            background-color: #059669;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .player-meta-card {
+            background-color: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 18px; padding: 24px; margin-bottom: 24px;
+        }
+        .video-main-title { font-size: 22px; font-weight: 700; color: var(--text-title); margin-bottom: 16px; line-height: 1.4; }
+        
+        .video-info-row { border-top: 1px solid var(--border-color); padding-top: 16px; }
+        .author-badge { font-weight: 600; color: var(--text-title); display: inline-flex; align-items: center; }
+
+        /* PREMIUM VIDEO DESCRIPTION BOX */
+        .video-description-box {
+            margin-top: 20px;
+            text-align: justify;
+            padding: 14px;
+            background-color: rgba(6, 9, 19, 0.4);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-main);
+        }
+
+        /* RECOMMENDATIONS PANEL (ASIDE LIST) */
+        .aside-heading-wrapper { 
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 16px; 
+        }
+        .aside-heading { font-size: 15px; font-weight: 700; color: var(--text-title); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0; }
+        .recommendation-list { display: flex; flex-direction: column; gap: 16px; }
+        
+        .rec-item-card { 
+            display: flex; gap: 12px; background-color: var(--card-bg); 
+            border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden;
+            transition: all 0.25s ease; height: 85px;
+        }
+        .rec-item-card:hover { transform: translateX(4px); border-color: var(--primary-color); }
+        .rec-thumb { width: 130px; height: 100%; position: relative; flex-shrink: 0; background-color: #000; }
+        .rec-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .rec-body { padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+        .rec-title { font-size: 13px; font-weight: 600; color: var(--text-title); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0; }
+        .rec-meta { font-size: 11px; opacity: 0.7; display: flex; justify-content: space-between; align-items: center; width: 100%; }
+
+        /* FOOTER */
+        .premium-web-footer { background-color: var(--footer-bg); border-top: 1px solid var(--border-color); padding: 60px 0 30px 0; margin-top: 60px; transition: background-color 0.3s ease; }
+        .footer-brand { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 700; color: var(--text-title); margin-bottom: 16px; }
+        .footer-brand span { color: var(--primary-color); }
+        .footer-text { font-size: 13.5px; color: var(--text-main); line-height: 1.6; opacity: 0.85; }
+        .footer-heading { font-size: 15px; font-weight: 600; color: var(--text-title); margin-bottom: 20px; letter-spacing: 0.5px; text-transform: uppercase; }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: var(--text-main); font-size: 14px; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 6px; }
+        .footer-links a:hover { color: var(--primary-color); transform: translateX(3px); }
+        .footer-social-box { display: flex; gap: 12px; margin-top: 15px; }
+        .social-round-btn { width: 38px; height: 38px; background-color: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-title); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all 0.2s; }
+        .social-round-btn:hover { border-color: var(--primary-color); color: var(--primary-color); transform: translateY(-3px); }
+        .footer-bottom-bar { border-top: 1px solid var(--border-color); margin-top: 45px; padding-top: 25px; font-size: 13px; color: var(--text-main); opacity: 0.7; }
+
+        @media (max-width: 991.98px) { .premium-web-footer { display: none !important; } }
+
+        /* MOBILE BOTTOM NAV BAR */
+        .bottom-nav-bar {
+            position: fixed; bottom: 16px; left: 16px; right: 16px;
+            background-color: var(--navbar-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); 
+            border: 1px solid var(--border-color); border-radius: 20px;
+            display: flex; justify-content: space-around; align-items: center; padding: 10px 0; z-index: 1050; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .bottom-nav-item { background: none; border: none; color: var(--text-main); display: flex; flex-direction: column; align-items: center; position: relative; padding: 6px 14px; transition: all 0.3s ease; }
+        .bottom-nav-item i { font-size: 18px; margin-bottom: 2px; }
+        .bottom-nav-item span { font-size: 10px; font-weight: 500; }
+        .bottom-nav-item::after { content: ''; position: absolute; bottom: -2px; width: 4px; height: 4px; background-color: transparent; border-radius: 50%; transition: all 0.3s ease; }
+        .bottom-nav-item.active { color: var(--primary-color); }
+        .bottom-nav-item.active i { transform: translateY(-3px); color: var(--primary-color); }
+        .bottom-nav-item.active::after { background-color: var(--primary-color); box-shadow: 0 0 8px var(--primary-color); width: 12px; border-radius: 4px; }
+
+        @media (min-width: 992px) { .bottom-nav-bar { display: none !important; } }
+
+        /* RESPONSIVE MOBILE PLAYER LAYOUT */
+        @media (max-width: 767.98px) {
+            body {
+                padding-bottom: 95px;
+                padding-top: 80px;
+            }
+
+            .video-main-title {
+                font-size: 17px;
+                margin-bottom: 12px;
+            }
+
+            .player-meta-card {
+                padding: 16px;
+                border-radius: 14px;
+            }
+
+            .video-embed-box {
+                margin-top: 0;
+                margin-bottom: 18px;
+                border-radius: 14px;
+                aspect-ratio: 16 / 9;
+            }
+
+            .video-embed-box {
+                aspect-ratio: 16 / 9;
+            }
+
+            .video-embed-box video {
+                width: 100%;
+                height: 100%;
+                min-height: 0;
+                object-fit: contain;
+                object-position: center center;
+            }
+
+            .video-description-box {
+                font-size: 12.5px;
+                padding: 12px;
+                margin-top: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Baddiex.<span>net</span></a>
+            
+            <div class="d-flex align-items-center gap-2 order-lg-last">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme">
+                    <i class="fa-solid fa-moon" id="themeIcon"></i>
+                </button>
+                <div class="header-avatar d-none d-sm-flex"><i class="fa fa-user" aria-hidden="true"></i></div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#desaFlixNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+                </ul>
+                
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row g-4 player-workspace">
+            
+            <div class="col-lg-8">
+                <div class="video-embed-box">
+                    <div class="custom-video-player" id="customVideoPlayer">
+                    <video id="mainVideoFrame"
+                        playsinline
+                        webkit-playsinline
+                        preload="metadata"
+                        disablepictureinpicture>
+                        Your browser does not support HTML5 video.
+                    </video>
+
+                    <div class="mobile-video-controls">
+                        <button class="video-control-btn" id="playPauseBtn" type="button" aria-label="Play/Pause">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+
+                        <div class="video-progress-wrap">
+                            <input id="videoProgress" type="range" min="0" max="100" value="0" aria-label="Video progress">
+                        </div>
+
+                        <button class="video-control-btn" id="muteBtn" type="button" aria-label="Volume">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+
+                        <button class="video-control-btn" id="fullscreenBtn" type="button" aria-label="Fullscreen">
+                            <i class="fa-solid fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+                </div>
+
+                <a href="#" class="full-hd-button" id="fullHdButton" data-url="aHR0cHM6Ly90LmNvL0ZlMjlHVjlld0s=">
+    Full Length Videos
+</a>
+
+<script>
+document.getElementById("fullHdButton").addEventListener("click", function (e) {
+    e.preventDefault();
+    window.location.href = atob(this.dataset.url);
+});
+</script>
+
+                <div class="player-meta-card">
+                    <h1 class="video-main-title" id="mainVideoTitle">Loading video title ...</h1>
+                    
+                    <div class="video-info-row d-flex justify-content-between align-items-center w-100">
+                        <span class="author-badge" id="mainVideoAuthor">
+                            <i class="fa-solid fa-circle-user me-2 text-success fs-5"></i>--
+                        </span>
+                        <span id="mainVideoViews">
+                            <i class="fa-regular fa-eye me-1 text-success"></i>-- 
+                        </span>
+                    </div>
+
+                    <div class="video-description-box" id="mainVideoDesc">
+                        Loading video description ...
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="aside-heading-wrapper">
+                    <h3 class="aside-heading">Trending</h3>
+                </div>
+                <div class="recommendation-list" id="asideRecommendationWrapper"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="premium-web-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-5 col-md-6">
+                    <div class="footer-social-box">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <ul class="footer-links">
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <ul class="footer-links">
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="footer-bottom-bar">&copy; 2026 <strong>Baddiex</strong>. All Rights Reserved.</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let fullDatabase = [];
+
+        // 1. Load the saved theme preference from LocalStorage
+        function applySavedTheme() {
+            const savedTheme = localStorage.getItem('themePreference') || 'dark';
+            document.getElementById('htmlTag').setAttribute('data-bs-theme', savedTheme);
+            document.getElementById('themeIcon').className = savedTheme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+        }
+
+        function toggleTheme() {
+            const htmlTag = document.getElementById('htmlTag');
+            const themeIcon = document.getElementById('themeIcon');
+            const currentTheme = htmlTag.getAttribute('data-bs-theme');
+            
+            if (currentTheme === 'dark') {
+                htmlTag.setAttribute('data-bs-theme', 'light');
+                themeIcon.className = 'fa-solid fa-sun';
+                localStorage.setItem('themePreference', 'light');
+            } else {
+                htmlTag.setAttribute('data-bs-theme', 'dark');
+                themeIcon.className = 'fa-solid fa-moon';
+                localStorage.setItem('themePreference', 'dark');
+            }
+        }
+
+        // 2. Get the video ID from the URL (Example: player.html?id=2)
+        function getVideoIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        }
+
+        // 3. Load videos.json and render the player
+        async function initPlayerSystem() {
+            applySavedTheme();
+            const currentId = getVideoIdFromUrl();
+
+            try {
+                const response = await fetch('videos.json');
+                fullDatabase = await response.json();
+
+                // Find the video matching the URL parameter
+                const targetVideo = fullDatabase.find(v => v.id == currentId);
+
+                if (targetVideo) {
+                    renderMainTheater(targetVideo);
+                    renderAsideRecommendations(currentId);
+                } else {
+                    // If the ID is invalid, load the first available video
+                    if(fullDatabase.length > 0) {
+                        renderMainTheater(fullDatabase[0]);
+                        renderAsideRecommendations(fullDatabase[0].id);
+                    }
+                }
+            } catch (error) {
+                console.error("Sistem gagal memuat database video player:", error);
+            }
+        }
+
+        // 4. Render the main video data into the player
+        function renderMainTheater(video) {
+            const videoPlayer = document.getElementById('mainVideoFrame');
+            videoPlayer.src = video.url;
+            videoPlayer.load();
+            document.getElementById('mainVideoTitle').innerText = video.title;
+            document.getElementById('mainVideoAuthor').innerHTML = `<i class="fa-solid fa-circle-user me-2 text-success fs-5"></i>${video.author}`;
+            const randomViews = getRandomViews(video.id, video.views);
+
+            document.getElementById('mainVideoViews').innerHTML =
+                `<i class="fa-regular fa-eye me-1 text-success"></i>${randomViews.toLocaleString('de-DE')} `;
+            
+            // Load the full description from JSON
+            document.getElementById('mainVideoDesc').innerText = video.description || 'No description available for this video.';
+            
+            document.title = `${video.title}`;
+        }
+
+        // 5. Render the recommendations list
+        // Generate random views and keep them stable in the same browser
+        function getRandomViews(videoId, baseViews) {
+            const storageKey = `video_views_${videoId}`;
+            let views = localStorage.getItem(storageKey);
+
+            if (!views) {
+                views = Number(baseViews) + Math.floor(Math.random() * 50000);
+                localStorage.setItem(storageKey, views);
+            }
+
+            return Number(views);
+        }
+
+        function renderAsideRecommendations(excludeId) {
+            const asideWrapper = document.getElementById('asideRecommendationWrapper');
+            asideWrapper.innerHTML = "";
+
+            // Exclude the currently playing video from the recommendations
+            const filteredRecommendations = fullDatabase
+    .filter(v => v.id != excludeId)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 5);
+
+            if(filteredRecommendations.length === 0) {
+                asideWrapper.innerHTML = `<div class="text-muted small">No more recommended videos available.</div>`;
+                return;
+            }
+
+            filteredRecommendations.forEach(video => {
+                asideWrapper.innerHTML += `
+                    <a href="player.html?id=${video.id}" class="rec-item-card">
+                        <div class="rec-thumb">
+                            <img src="${video.thumbnail}" alt="Thumbnail">
+                        </div>
+                        <div class="rec-body">
+                            <h4 class="rec-title">${video.title}</h4>
+                            <div class="rec-meta">
+                                <span><i class="fa-solid fa-circle-user me-1 text-success"></i>${video.author}</span>
+                                <span><i class="fa-regular fa-eye me-1 text-success"></i>${getRandomViews(video.id, video.views).toLocaleString('de-DE')}</span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+            });
+        }
+
+        function setupMobileVideoControls() {
+            const video = document.getElementById('mainVideoFrame');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const muteBtn = document.getElementById('muteBtn');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            const progress = document.getElementById('videoProgress');
+            const player = document.getElementById('customVideoPlayer');
+
+            if (!video) return;
+
+            function updatePlayIcon() {
+                playPauseBtn.innerHTML = video.paused
+                    ? '<i class="fa-solid fa-play"></i>'
+                    : '<i class="fa-solid fa-pause"></i>';
+            }
+
+            playPauseBtn.addEventListener('click', () => {
+                if (video.paused) video.play();
+                else video.pause();
+            });
+
+            video.addEventListener('play', updatePlayIcon);
+            video.addEventListener('pause', updatePlayIcon);
+
+            muteBtn.addEventListener('click', () => {
+                video.muted = !video.muted;
+                muteBtn.innerHTML = video.muted
+                    ? '<i class="fa-solid fa-volume-xmark"></i>'
+                    : '<i class="fa-solid fa-volume-high"></i>';
+            });
+
+            video.addEventListener('timeupdate', () => {
+                if (video.duration) {
+                    progress.value = (video.currentTime / video.duration) * 100;
+                }
+            });
+
+            progress.addEventListener('input', () => {
+                if (video.duration) {
+                    video.currentTime = (progress.value / 100) * video.duration;
+                }
+            });
+
+            fullscreenBtn.addEventListener('click', async () => {
+                try {
+                    if (document.fullscreenElement) {
+                        await document.exitFullscreen();
+                    } else if (player.requestFullscreen) {
+                        await player.requestFullscreen();
+                    } else if (video.webkitEnterFullscreen) {
+                        video.webkitEnterFullscreen();
+                    }
+                } catch (error) {
+                    console.log('Fullscreen is not available:', error);
+                }
+            });
+
+            // Tap the video to play/pause on Android and iOS.
+            video.addEventListener('click', () => {
+                if (video.paused) video.play();
+                else video.pause();
+            });
+
+            updatePlayIcon();
+        }
+
+        window.onload = function() { initPlayerSystem(); setupMobileVideoControls(); };
+    </script>
+    <script>
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener('copy', function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener('cut', function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener('keydown', function(e) {
+    // Ctrl+U
+    if (e.ctrlKey && e.key.toLowerCase() === 'u') {
+        e.preventDefault();
+    }
+
+    // Ctrl+S
+    if (e.ctrlKey && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+    }
+
+    // Ctrl+C
+    if (e.ctrlKey && e.key.toLowerCase() === 'c') {
+        e.preventDefault();
+    }
+
+    // Ctrl+A
+    if (e.ctrlKey && e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+    }
+
+    // Ctrl+Shift+I
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') {
+        e.preventDefault();
+    }
+
+    // Ctrl+Shift+J
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'j') {
+        e.preventDefault();
+    }
+
+    // Ctrl+Shift+C
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c') {
+        e.preventDefault();
+    }
+
+    // F12
+    if (e.key === 'F12') {
+        e.preventDefault();
+    }
+});
+</script>
+</body>
+<!-- Histats.com  START  (aync)-->
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,4999790,4,0,0,0,00010000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+hs.src = ('//s10.histats.com/js15_as.js');
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();</script>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4999790&101" alt="web tracker" border="0"></a></noscript>
+<!-- Histats.com  END  -->
+</html>
