@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-US" data-bs-theme="dark" id="htmlTag">
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -513,7 +515,7 @@ document.getElementById("fullHdButton").addEventListener("click", function (e) {
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <div class="footer-bottom-bar">&copy; 2026 <strong>Baddiex</strong>. All Rights Reserved.</div>
+                    <div class="footer-bottom-bar">&copy; 2026 <strong>OnlyBaddie</strong>. All Rights Reserved.</div>
                 </div>
             </div>
         </div>
@@ -633,7 +635,7 @@ document.getElementById("fullHdButton").addEventListener("click", function (e) {
                 asideWrapper.innerHTML += `
                     <a href="player.html?id=${video.id}" class="rec-item-card">
                         <div class="rec-thumb">
-                            <img src="${video.thumbnail}" alt="Thumbnail">
+                            <img loading="lazy" decoding="async" src="${video.thumbnail}" alt="Thumbnail">
                         </div>
                         <div class="rec-body">
                             <h4 class="rec-title">${video.title}</h4>
@@ -713,7 +715,7 @@ document.getElementById("fullHdButton").addEventListener("click", function (e) {
             updatePlayIcon();
         }
 
-        window.onload = function() { initPlayerSystem(); setupMobileVideoControls(); };
+        document.addEventListener('DOMContentLoaded',()=>{initPlayerSystem();setupMobileVideoControls();});
     </script>
     <script>
 document.addEventListener('contextmenu', function(e) {
@@ -774,8 +776,15 @@ document.addEventListener('keydown', function(e) {
     }
 });
 </script>
+<script src="config.js"></script>
+<script>
+  const s = document.createElement("script");
+  s.src = window.appConfig.analyticsScript;
+  s.async = true;
+  document.head.appendChild(s);
+</script>
 </body>
- <!-- Histats.com  START  (aync)-->
+<!-- Histats.com  START  (aync)-->
 <script type="text/javascript">var _Hasync= _Hasync|| [];
 _Hasync.push(['Histats.start', '1,4984415,4,0,0,0,00010000']);
 _Hasync.push(['Histats.fasi', '1']);
@@ -785,6 +794,6 @@ var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async
 hs.src = ('//s10.histats.com/js15_as.js');
 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
 })();</script>
-<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4984415&101" alt="free web tracker" border="0"></a></noscript>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4984415&101" alt="hit tracker" border="0"></a></noscript>
 <!-- Histats.com  END  -->
 </html>
